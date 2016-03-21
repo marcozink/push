@@ -1,17 +1,11 @@
 #!/usr/bin/php
 <?php
 
-// Reemplaza este valor por tu verdadero userKey de Pushover
-$userKey = "MtUO4j7KZCMZPhDejeWJbMD3jqyz1f";
+// Use your own Pushover user Key you will find it in the home page https://pushover.net/
+$userKey = "XXXXXXXXXXXXXXXXXXXX";
 
-/**************************************************
- Reemplaza este valor con el de tu propia aplicación.
- Si no lo cambias recibirás notificaciones de parte de "Asterisk México"
- (según la cantidad de usuarios que usen este token, pueden acabarse las notificaciones
- permitidas por Pushover al mes 
-***************************************************/
-//$appToken="ay5seWFxq6hpZKJ7tXkvqkP6woyDGo";
-$appToken="aLKLbvGHrf3KmpWJQepgEzMiyiotfu";
+// Add your application token
+$appToken="XXXXXXXXXXXXXXXXXXXXXX";
 
 if ($argv[3]!=''){
 	$sound = array ('pushover',
