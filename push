@@ -1,0 +1,57 @@
+#!/usr/bin/php
+<?php
+
+// Reemplaza este valor por tu verdadero userKey de Pushover
+$userKey = "MtUO4j7KZCMZPhDejeWJbMD3jqyz1f";
+
+/**************************************************
+ Reemplaza este valor con el de tu propia aplicación.
+ Si no lo cambias recibirás notificaciones de parte de "Asterisk México"
+ (según la cantidad de usuarios que usen este token, pueden acabarse las notificaciones
+ permitidas por Pushover al mes 
+***************************************************/
+//$appToken="ay5seWFxq6hpZKJ7tXkvqkP6woyDGo";
+$appToken="aLKLbvGHrf3KmpWJQepgEzMiyiotfu";
+
+if ($argv[3]!=''){
+	$sound = array ('pushover',
+	'bike',
+	'bugle',
+	'cashregister',
+	'classical',
+	'cosmic',
+	'falling',
+	'gamelan',
+	'incoming',
+	'intermission',
+	'magic',
+	'mechanical',
+	'pianobar',
+	'siren',
+	'spacealarm',
+	'tugboat',
+	'alien',
+	'climb',
+	'persistent',
+	'echo',
+	'updown',
+	'none');
+	$sound = $sound[$argv[3]];
+}
+else
+	$sound = 'cosmic';
+ 
+curl_setopt_array($ch = curl_init(), array(
+  CURLOPT_URL => "https://api.pushover.net/1/messages.json",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_POSTFIELDS => array(
+     "token" => $appToken,
+     "user" => $userKey,
+     "title" => $argv[1],
+     "message" => $argv[2],
+     "sound" => $sound,
+   )));
+curl_exec($ch);
+curl_close($ch);
+
+?>
