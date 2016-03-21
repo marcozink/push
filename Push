@@ -1,0 +1,51 @@
+#!/usr/bin/php
+<?php
+
+// Add your own User Key from https://pushover.net/
+$userKey = "XXXXXXXXXXXXXX";
+
+// Add your Application Token
+$appToken="XXXXXXXXXXXXX";
+
+if ($argv[3]!=''){
+	$sound = array ('pushover',
+	'bike',
+	'bugle',
+	'cashregister',
+	'classical',
+	'cosmic',
+	'falling',
+	'gamelan',
+	'incoming',
+	'intermission',
+	'magic',
+	'mechanical',
+	'pianobar',
+	'siren',
+	'spacealarm',
+	'tugboat',
+	'alien',
+	'climb',
+	'persistent',
+	'echo',
+	'updown',
+	'none');
+	$sound = $sound[$argv[3]];
+}
+else
+	$sound = 'pushover';
+ 
+curl_setopt_array($ch = curl_init(), array(
+  CURLOPT_URL => "https://api.pushover.net/1/messages.json",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_POSTFIELDS => array(
+     "token" => $appToken,
+     "user" => $userKey,
+     "title" => $argv[1],
+     "message" => $argv[2],
+     "sound" => $sound,
+   )));
+curl_exec($ch);
+curl_close($ch);
+
+?>
